@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Хост: 127.0.0.1:3306
--- Время создания: Окт 27 2021 г., 01:35
+-- Время создания: Окт 28 2021 г., 02:06
 -- Версия сервера: 10.3.13-MariaDB-log
 -- Версия PHP: 7.2.22
 
@@ -36,6 +36,14 @@ CREATE TABLE `links` (
   `views` int(11) NOT NULL DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
+--
+-- Дамп данных таблицы `links`
+--
+
+INSERT INTO `links` (`id`, `user_id`, `long_link`, `short_link`, `views`) VALUES
+(1, 1, 'https://yandex.ru', 'asd', 11),
+(2, 1, 'https://google.ru', 'goo', 13);
+
 -- --------------------------------------------------------
 
 --
@@ -49,6 +57,14 @@ CREATE TABLE `users` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
+-- Дамп данных таблицы `users`
+--
+
+INSERT INTO `users` (`id`, `login`, `password`) VALUES
+(1, 'pavelz1', '050567'),
+(2, 'pavelz', '10082');
+
+--
 -- Индексы сохранённых таблиц
 --
 
@@ -56,7 +72,8 @@ CREATE TABLE `users` (
 -- Индексы таблицы `links`
 --
 ALTER TABLE `links`
-  ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `short_link` (`short_link`);
 
 --
 -- Индексы таблицы `users`
@@ -73,13 +90,13 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT для таблицы `links`
 --
 ALTER TABLE `links`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT для таблицы `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

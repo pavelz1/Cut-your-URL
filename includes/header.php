@@ -1,5 +1,11 @@
-<?php
-include "./includes/functions.php";
+<?php require_once("./includes/functions.php");
+
+$users_count = db_query("SELECT COUNT(id) FROM `users`;")->fetchColumn();
+
+$views_count = db_query("SELECT SUM(`views`) FROM `links`;")->fetchColumn();
+
+$links_count = db_query("SELECT COUNT(`short_link`) FROM `links`;")->fetchColumn();
+
 ?>
 
 <!doctype html>
@@ -36,9 +42,3 @@ include "./includes/functions.php";
 			</div>
 		</nav>
 	</header>
-<pre>
-	<?php 
-	// var_dump($_SERVER); 
-	echo get_url();
-	?>
-</pre>	
